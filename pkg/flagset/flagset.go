@@ -162,7 +162,7 @@ func ServerWithConfig(cfg *config.Config) []cli.Flag {
 
 		&cli.StringFlag{
 			Name:        "backend-datastore",
-			Value:       "config",
+			Value:       "owncloud",
 			Usage:       "datastore to use as the backend. one of config, ldap or owncloud",
 			EnvVars:     []string{"GLAUTH_BACKEND_DATASTORE"},
 			Destination: &cfg.Backend.Datastore,
@@ -197,8 +197,8 @@ func ServerWithConfig(cfg *config.Config) []cli.Flag {
 		},
 		&cli.StringSliceFlag{
 			Name:    "backend-server",
-			Value:   cli.NewStringSlice("https://demo.owncloud.com"),
-			Usage:   `--backend-servers http://internal1.example.com [--backend-servers http://internal2.example.com]`,
+			Value:   cli.NewStringSlice("http://localhost:9120/v1.0"),
+			Usage:   `--backend-server http://internal1.example.com/v1.0 [--backend-server http://internal2.example.com/graph/v2.0]`,
 			EnvVars: []string{"GLAUTH_BACKEND_SERVERS"},
 		},
 		&cli.StringFlag{
