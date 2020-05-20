@@ -54,6 +54,9 @@ type Backend struct {
 	Servers     []string
 	SSHKeyAttr  string
 	UseGraphAPI bool
+	// homed
+	UserRecordsPath  string
+	GroupRecordsPath string
 }
 
 // Config combines all available configuration parts.

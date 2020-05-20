@@ -162,10 +162,24 @@ func ServerWithConfig(cfg *config.Config) []cli.Flag {
 
 		&cli.StringFlag{
 			Name:        "backend-datastore",
-			Value:       "config",
+			Value:       "homed",
 			Usage:       "datastore to use as the backend. one of config, ldap or owncloud",
 			EnvVars:     []string{"GLAUTH_BACKEND_DATASTORE"},
 			Destination: &cfg.Backend.Datastore,
+		},
+		&cli.StringFlag{
+			Name:        "backend-user-records-path",
+			Value:       "./users",
+			Usage:       "path to use as the root of systemd-homed user records",
+			EnvVars:     []string{"GLAUTH_BACKEND_USER_RECORDS_PATH"},
+			Destination: &cfg.Backend.UserRecordsPath,
+		},
+		&cli.StringFlag{
+			Name:        "backend-group-records-path",
+			Value:       "./groups",
+			Usage:       "path to use as the root of systemd-homed group records",
+			EnvVars:     []string{"GLAUTH_BACKEND_GROUP_RECORDS_PATH"},
+			Destination: &cfg.Backend.GroupRecordsPath,
 		},
 		&cli.StringFlag{
 			Name:        "backend-basedn",

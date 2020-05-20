@@ -2,11 +2,12 @@ package command
 
 import (
 	"context"
-	"github.com/owncloud/ocis-glauth/pkg/crypto"
 	"os"
 	"os/signal"
 	"strings"
 	"time"
+
+	"github.com/owncloud/ocis-glauth/pkg/crypto"
 
 	"contrib.go.opencensus.io/exporter/jaeger"
 	"contrib.go.opencensus.io/exporter/ocagent"
@@ -149,14 +150,16 @@ func Server(cfg *config.Config) *cli.Command {
 						Key:     cfg.Ldaps.Key,
 					},
 					Backend: glauthcfg.Backend{
-						Datastore:   cfg.Backend.Datastore,
-						BaseDN:      cfg.Backend.BaseDN,
-						Insecure:    cfg.Backend.Insecure,
-						NameFormat:  cfg.Backend.NameFormat,
-						GroupFormat: cfg.Backend.GroupFormat,
-						Servers:     cfg.Backend.Servers,
-						SSHKeyAttr:  cfg.Backend.SSHKeyAttr,
-						UseGraphAPI: cfg.Backend.UseGraphAPI,
+						Datastore:        cfg.Backend.Datastore,
+						BaseDN:           cfg.Backend.BaseDN,
+						Insecure:         cfg.Backend.Insecure,
+						NameFormat:       cfg.Backend.NameFormat,
+						GroupFormat:      cfg.Backend.GroupFormat,
+						Servers:          cfg.Backend.Servers,
+						SSHKeyAttr:       cfg.Backend.SSHKeyAttr,
+						UseGraphAPI:      cfg.Backend.UseGraphAPI,
+						UserRecordsPath:  cfg.Backend.UserRecordsPath,
+						GroupRecordsPath: cfg.Backend.GroupRecordsPath,
 					},
 					// TODO read users for the config backend from config file
 					Users: []glauthcfg.User{
