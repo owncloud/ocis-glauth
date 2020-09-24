@@ -8,6 +8,7 @@ import (
 	"time"
 
 	"github.com/owncloud/ocis-glauth/pkg/crypto"
+	"github.com/owncloud/ocis-glauth/pkg/metrics"
 
 	"contrib.go.opencensus.io/exporter/jaeger"
 	"contrib.go.opencensus.io/exporter/ocagent"
@@ -132,10 +133,12 @@ func Server(cfg *config.Config) *cli.Command {
 			var (
 				gr          = run.Group{}
 				ctx, cancel = context.WithCancel(context.Background())
-				//metrics     = metrics.New()
+				metrics     = metrics.New()
 			)
 
 			defer cancel()
+
+			metrics.BuildInfo.WithLabelValues(cfg.Version).Set(1)
 
 			{
 				cfg := glauthcfg.Config{
